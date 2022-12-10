@@ -1,0 +1,38 @@
+@startuml
+
+package "OTIS System"{
+package "UI Layer"  #DDDDDD {
+  
+}
+
+
+package "Business Layer" {}
+
+
+package "Data Layer" {}
+
+package "Service Layer" {}
+
+"UI Layer" ..> "Business Layer"
+"Business Layer" ..> "UI Layer"
+
+"Service Layer" ...> "Business Layer"
+
+"Business Layer" ..> "Service Layer"
+
+"Data Layer" ..> "Business Layer"
+"Business Layer"..> "Data Layer"
+}
+
+package "OTIS ERP"{
+
+package "LPROD"{}
+
+package "LCRM" {}
+}
+package "DHL Express"{}
+
+"LCRM" ..> "Service Layer"
+"LPROD" ..> "Service Layer"
+"DHL Express"..> "Service Layer"
+@enduml

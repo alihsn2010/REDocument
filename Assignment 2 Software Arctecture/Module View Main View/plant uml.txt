@@ -1,0 +1,25 @@
+@startuml
+
+skinparam componentStyle uml1
+package "OTIS System"{
+[Business Layer]-ORM
+[Business Layer]-up-HTTPS
+
+[Service Layer] ..> HTTP : use
+[Business Layer] ..>DataAccess :use
+[Database Layer]..>ORM :use
+[UI Layer]..>HTTPS:use
+DataAccess - [Service Layer]
+[UI Layer]-right-check
+
+circle "user"..>check
+
+
+
+
+}
+[DHL] -right-HTTP
+[LPROD] -left-HTTP
+[LCRM]-up-HTTP
+
+@enduml

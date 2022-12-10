@@ -1,0 +1,31 @@
+@startuml
+actor       Client      as client
+participant "User dashboard" as ui
+participant "Report Module" as report
+participant "User Module" as user
+participant "OTIS Data Module" as otis
+
+participant "Log Module" as log
+
+database "OTIS DataBase" as db
+
+client->ui:slectOrderslist and enter date to-from
+ui-->client:orders list Selected
+client->ui:generateReport selected format
+ui->report:GenrateReport(orderId[],date,time)
+
+report->user:getUserDetails()
+report->otis:getorderDetails(orderId)
+
+user->db:fetchUserDetails()
+db->user:Customer Details
+otis->db:fetchOrderDetails()
+db-->otis:Customer Order Details
+
+user-->report:customerDetails
+otis-->report:order details
+
+report->report:generateReport(CustomerData,OrderData,time,date,Format)
+report-->ui:report is returned to user
+
+@enduml

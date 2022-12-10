@@ -1,0 +1,25 @@
+@startuml
+actor       Client      as client
+participant "User dashboard" as ui
+participant "User Module" as user
+participant "OTIS Data Module" as otis
+participant "Log Module" as log
+
+database "OTIS DataBase" as db
+
+client -> ui :Login Request
+ui->user:login(username,password)
+user->db:autheticate user login
+db-->user:response
+user->log:createUserLoginLog()
+user->otis:getOrderDetails(userId)
+otis-->user:order details of user
+user-->ui: display user order details in list
+
+user-> otis:getOrdertrackingDetails(orderid)
+otis->db:fetchtrackingdetails
+db-->ui:order tracking details
+
+
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+
+[Database Layer]..>ORM :use
+[UI Layer]..>HTTPS:use
+[Business Layer]-ORM
+[Business Layer]-up-HTTPS
+[Business Layer] ..>DataAccess :use
+
+DataAccess - [Service Layer]
+[Service Layer] ..> HTTP : use
+[DHL] -left-HTTP
+[LPROD] -right-HTTP
+[LCRM]-down-HTTP
+
+
+@enduml
