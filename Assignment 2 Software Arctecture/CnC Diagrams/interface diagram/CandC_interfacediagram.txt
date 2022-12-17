@@ -1,0 +1,15 @@
+@startuml
+[Database Server Component]..>ORM :use
+[Customer UI Component]..>HTTPS:use
+[Main User Interface]..>HTTPS:use
+[Business object Component]-ORM
+[Business object Component]-up-HTTPS
+[Business object Component] ..>DataAccess :use
+[Backup Server object Component] ..>ORM:use
+
+DataAccess - [External Service Component]
+[External Service Component] ..> HTTP : use
+[DHL] -left-HTTP
+[LPROD] -right-HTTP
+[LCRM]-down-HTTP
+@enduml

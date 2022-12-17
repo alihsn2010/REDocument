@@ -1,0 +1,30 @@
+@startuml
+actor       "System Admin"      as sysadm
+participant "System Admin dashboard" as ui
+
+participant "User Module" as user
+
+
+participant "Log Module" as log
+
+database "OTIS DataBase" as db
+
+
+sysadm->ui:view user list with access
+
+ui->user:getUsers()
+user->db:user data query
+db-->user:users data
+user--> ui:list of all users
+
+sysadm->ui:change Access level
+ui->user:changeUserAccess(AccessLevelId,UserId)
+user->db:UpdateAccess
+db-->user:update sucessfull
+
+user->user:notiyUserByEmail(userId)
+
+user->log:createAcessUpdateLog()
+user-->ui:Update Sucessful
+
+@enduml
