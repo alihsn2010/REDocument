@@ -1,0 +1,28 @@
+@startuml
+actor       Client      as client
+participant "UI Object" as ui
+participant "Reports" as report
+
+participant "Business object" as otis
+
+participant "Log folder" as log
+
+database "OTIS DataBase" as db
+
+client -> ui: Select Data and format
+
+ui->report:generateReport(format,orderid[],customerId)
+
+report->otis:getOrderData(orderid[],customerId)
+
+otis->db:get Order details with customer 
+
+db-->report:order details recieved
+
+report-> report: generate report
+
+report->log:createReportLog()
+
+report-->ui:report displayed in selected format
+
+@enduml
